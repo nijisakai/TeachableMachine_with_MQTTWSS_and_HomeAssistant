@@ -1,61 +1,41 @@
-# Mobile (and Desktop) Camera App Template (HTML, CSS, JS and WebRTC)
+# Pass Teachable Machine result with MQTT
 
-I like to experiment with Computer Vision and AI API's (like Azure Cognetive Services, Google Cloud Vision, IBM Watson) to see if I can utilise them for some ideas. 
+Train a model with Teachable Machine, use a webcam to test the model and pass the result to some IOT platform such as HomeAssistant.
+In this repository, I use a raspberry pi 4 with [Hass.io](https://www.home-assistant.io/hassio/) with MQTT addon. 
 
-The most easy way to test those scripts and APIs them is by directly making a photo and sending image data to the API/script, instead of uploading files. I didn't find a fast mobile first camera template for HTML5 as a starting point for my prototypes, so I developed one myself. The interface setup is mainly inspired by the standard Android and iOS Cameras.
+## Installation
 
-The template doesn't do anything with the image(canvas) data yet, I'll leave that up to you. 
-If you need help with integrations or app development (PHP, Vue), feel free to contact me. 
+### Install docker (instructions taken from this thread 96 on docker )
 
-Feel free to use it in your next Computer Vision or AI project. 
+`sudo curl -sL get.docker.com | sed 's/9)/10)/' | sh`
 
-### Requirements
+### Install hassio dependencies (instructions taken from here 36)
 
-- WebRTC is only supported on secure connections. So you need to serve it from https. 
-*You can test and debug in Chrome from localhost though (this doesn't work in Safari).* 
+`sudo apt-get install apparmor-utils apt-transport-https avahi-daemon ca-certificates curl dbus jq network-manager socat software-properties-common`
 
-- A recent OS and browser. It should work on recent Phones and OS-es. If it isn't, please 
-  let me know (issue) (including a suggestion to fix it). Also add the debugging info in the console.
+### Install hassio (this part I fiddled with until I got something that worked)
 
-### Functionalities
+Save hassio installer to file: $ curl -sL "https://raw.githubusercontent.com/home-assistant/hassio-installer/master/hassio_install.sh" >> hassio_install.sh
+Modify install script. Open up hassio_install.sh in your favorite text editor and change it as follows. Where it says “armv7l”, change that section so it looks like this:
+Copy to clipboard
+"armv7l")
+        HOMEASSISTANT_DOCKER="$DOCKER_REPO/raspberrypi3-homeassistant"
+        HASSIO_DOCKER="$DOCKER_REPO/armhf-hassio-supervisor"
+    ;;
+This (https://pastebin.com/fc64mDnm) is what mine looked like after I modified it.
 
-- Fullscreen mode (not on Safari mobile (iOS))
-- Take Photo
-- Flip Camera (environment / user)
-- Supports both portrait and landscape mode
+Run install script: $ sudo bash hassio_install.sh
+After that, hassio should be available.
 
-**Check the [demo](https://demo.kasperkamperman.com/mobilecamtemplate/)**
+## Requirement
 
-## Used Libraries:
+- nginx server over lan or wan
+- a phone or laptop with a camera
 
-- Fullscreen functionality: [Screenfull.js](https://github.com/sindresorhus/screenfull.js/)
-- Detect WebRTC support: [DetectRTC.js](https://www.webrtc-experiment.com/DetectRTC/)
-- WebRTC cross-browser: [Adapter.js](https://github.com/webrtc/adapter)
-- UI click sound: [Howler.js](https://howlerjs.com)
+## Usage
 
-## Used Assets:
+tbd
 
-- ["Basic Click Wooden"](https://freesound.org/people/GameAudio/sounds/220200/) - by [GameAudio](https://www.gameaudio101.com)
-- [Material Design Icons](https://material.io/icons/) (camera front, camera rear, photo camera, fullscreen, fullscreen exit)
+## Acknowledgments
 
-## Tested with:
-
-- Chrome Android 8.0 (Nokia 5)
-- Chrome 65 - MacOs 10.12.6
-- Safari 11.0.3 - MacOs 10.12.6
-- Safari mobile - iOS 11, iOS 12, iOS 13
-
-## Created by 
-
-[Kasper Kamperman](https://www.kasperkamperman.com/blog/camera-template/)
-
-Credits and a link to my website are always appreciated. 
-I'm always curious how people end up using my stuff, so
-feel free to [mail](https://www.kasperkamperman.com/contact/) or [send a tweet @kasperkamperman](https://twitter.com/kasperkamperman). 
-
-## Good WebRTC resources
-
-- https://webrtc.github.io/samples/
-- https://www.webrtc-experiment.com/
-- https://www.html5rocks.com/en/tutorials/getusermedia/intro/
-- https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+This repository is based on [kasperkamperman/MobileCameraTemplate](https://github.com/kasperkamperman/MobileCameraTemplate)
