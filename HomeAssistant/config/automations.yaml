@@ -1,0 +1,34 @@
+# - id: baiduface
+#   alias: face_indentify
+#   trigger:
+#   - entity_id: sensor.ren_lian_shi_bie
+#     platform: state
+#     to: 'True'
+#   action:
+#   - data_template:
+#       entity_id: media_player.kodi
+#       message: "{% if states.sensor.ren_lian_shi_bie.attributes[\"user_id\"] == \"\
+#         chy01\" %}\n  你好，陈虹宇！\n{% elif states.sensor.ren_lian_shi_bie.attributes[\"\
+#         user_id\"] == \"sjc\" %}\n  你好，宿金超！\n{% endif %}\n"
+#     service: tts.baidu_say
+#   - alias: car
+#     data: {}
+#     entity_id: switch.door
+# #     service: switch.turn_on
+
+- id: tfface
+  alias: faceunlocktf
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.faceunlock
+      value_template: '{{ state.attributes.score01 }}'
+      above: 0.8
+    - platform: numeric_state
+      entity_id: sensor.faceunlock
+      value_template: '{{ state.attributes.score02 }}'
+      above: 0.8
+  action:
+  - alias: car
+    data: {}
+    entity_id: switch.door
+    service: switch.turn_on

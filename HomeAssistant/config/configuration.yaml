@@ -1,0 +1,112 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+sensor:
+  - platform: baidu_face
+    api_key: "tHjWWiNXlQLFNT2SdrNPWwH3"
+    secret_key: "LXHQ5kP6GYewzOqFL1umrK4mfljx3W4r"
+    group_list: "['normal_group']"
+    camera_entity_id: "camera.mjpeg_camera"
+    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI0NjBjMjFlM2NiZjY0YTliYTdjZTFjMzVhNDYzY2I2YiIsImlhdCI6MTU3ODU0NjU3OSwiZXhwIjoxODkzOTA2NTc5fQ.rUDysZx983VxFJPj4cq5gynlNa3A7HO5zd8H9FxTHAQ"
+    # liveness: "NORMAL"
+    # name: "ren lian shi bie"
+    # port: 8123
+    # pic_url: "网络、本地图片地址"
+    scan_interval: 1
+  - platform: mqtt
+    name: "faceunlock"
+    state_topic: "mytopic01"
+    json_attributes_topic: "mytopic01"
+    # value_template: "{{ value_json.faceunlock }}"
+    # json_attributes_template: "{{ value_json.faceunlock }}"
+    
+
+
+
+# image_processing:
+#   - platform: baidu_face_indentify
+#     app_id: '11478116'
+#     api_key: 'tHjWWiNXlQLFNT2SdrNPWwH3'
+#     secret_key: 'LXHQ5kP6GYewzOqFL1umrK4mfljx3W4r'
+#     snapshot_filepath: '/home/pi/images/'
+#     resize: 0
+#     detect_top_num: 3
+#     ha_url: 'http://192.168.123.201:8123'
+#     # ha_password: 'welcome'
+#     scan_interval: 1
+#     source:
+#      - entity_id: camera.mjpeg_camera
+#        name: faceRec
+
+# android_ip_webcam:
+#   - host: 192.168.123.131
+
+# ffmpeg:
+# camera:
+# - platform: ffmpeg
+#   name: Camera
+#   input: -rtsp_transport tcp -i rtsp://192.168.123.29:8554/live
+# camera:
+#   - platform: rpi_camera
+
+# camera:
+#   - platform: local_file
+#     name: camera01
+#     file_path: /share/motion/lastsnap.jpg
+
+camera:
+  - platform: mjpeg
+    mjpeg_url: http://192.168.123.218:8080/?action=stream
+    # mjpeg_url: http://192.168.123.59:8088/?action=snapshot
+#sudo apt-get install build-essential imagemagick libv4l-dev libjpeg8-dev cmake -y
+#git clone https://github.com/jacksonliam/mjpg-streamer.git
+#cd mjpg-streamer-master/mjpg-streamer-experimental
+#make all
+# if error: cmake -DPLUGIN_INPUT_OPENCV=OFF
+#sudo make install
+#LD_LIBRARY_PATH=/usr/local/lib
+#mjpg_streamer -i "input_uvc.so -d /dev/video0" -o "output_http.so -w /home/pi/www"
+
+
+tts:
+  - platform: baidu
+    app_id: 9217941
+    api_key: qW5HLj4Ks6DfsCV2K9If5O80
+    secret_key: 37riCUCmGj1lfrhaGcyu11wWqCjvZbZR
+    #speed：语速0-9（缺省5）
+    #pitch：语调0-9（缺省5）
+    #volume：音量0-15（缺省5）
+    #person：声音（0：女，1：男，3：百度合成，4：百度合成，缺省0）
+    speed: 6
+    pitch: 8
+    volume: 15
+    person: 4
+
+media_player:
+  - platform: kodi
+    host: 192.168.123.29
+
+
+switch:
+  - platform: broadlink
+    host: 192.168.123.2
+    mac: '78:0F:77:63:0A:2C'
+    timeout: 15
+    switches:
+      door:
+        friendly_name: "小车"
+        command_on: 'JgAcAEAoGSYZEhgoGRIZEhkmGSgXKRgTGScYJxkADQUAAAAAAAAAAAAAAAA='
+        command_off: 'JgAcAEAoGCgYKBknGBMYKBYqGCgZJxgSGBMZEhkADQUAAAAAAAAAAAAAAAA='
+
+homekit:
