@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <script src="./browserMqtt.js"></script>
+        <!-- <script src="require.js"></script> -->
+        <!-- <script src="mqtt.min.js"></script> -->
+        <script>
+            //  var mqtt = require('mqtt')
+            //  var fs = require('fs');
+            // var KEY = '/var/www/html/test02/client-key.key';
+            // var CERT = '/var/www/html/test02/client-cert.crt';
+            // var TRUSTED_CA_LIST = '/var/www/html/test02/cacert.crt';
+
+            // var PORT = '8883';
+            // var HOST = '59.110.165.6';
+
+            var options = {
+                port: '8081',
+                host: '59.110.165.6',
+                keyPath: '/var/www/html/test02/client-key.pem',
+                certPath: '/var/www/html/test02/client-cert.pem',
+                rejectUnauthorized : false, 
+                //The CA list will be used to determine if server is authorized
+                ca: ['/var/www/html/test02/cacert.pem'],
+                protocol: 'wss',
+                protocolId: 'MQTT',
+                // username: 'bnu',
+                // password: 'bnubnu',
+                clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8)
+            };
+
+            var client = mqtt.connect(options);
+
+            client.subscribe('messages');
+            client.publish('messages', 'Current time is: ' + new Date());
+            client.on('message', function(topic, message) {
+            console.log(message);
+            });
+
+            client.on('connect', function(){
+                console.log('Connected');
+            });    
+                    
+        </script>
+    </head>
+    <body>
+        <input type="text" id="msg"/>
+        <input type="button" value="Send" onclick="send()"/>
+        <input type="button" value="Start" onclick="start()"/>
+        <input type="button" value="Stop" onclick="stop()"/>
+    </body>
+</html>
