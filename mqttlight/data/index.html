@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Moon Lamp</title>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <style type="text/css">
+            input {
+                width: 100%;
+                height: 72px;
+            }
+
+            label {
+                font-size: 24px;
+            }
+        </style>
+    </head>
+    <body>
+        <H1>Welcome To Moon Lamp</H1>
+        <form id=myForm action=/set-color>
+            <div>
+                <label for=red>Red </label>
+                <div></div>
+                <input type=range name=red id=red value=0 onchange=Submit()>
+            </div>
+            <div>
+                <label for=red>Green </label>
+                <div></div>
+                <input type=range name=green id=green value=0 onchange=Submit()>
+            </div>
+            <div>
+                <label for=red>Blue </label>
+                <div></div>
+                <input type=range name=blue id=blue value=0 onchange=Submit()>
+            </div>
+        </form>
+        <script type='text/javascript'>
+             function setRGB(red,green,blue) {
+                        var xmlHttp = '';
+                        var requstData = '';
+                        var html = '';
+                        if (window.XMLHttpRequest) {                    
+                              xmlHttp = new XMLHttpRequest();                
+                        } else {                    
+                              xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');                
+                        }                
+                        xmlHttp.open('GET', '/set-color?red='+red+'&green='+green+'&blue='+blue, true);                 
+                        xmlHttp.send();                 
+                        xmlHttp.onreadystatechange = function() {                    
+                              if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {                        
+                                    requstData = xmlHttp.responseText;                         
+                                    console.log(requstData);                    
+                              }                
+                        };            
+                  } 
+                  function setColor(){   
+                        var red = document.getElementById('red').value;   
+                        var green = document.getElementById('green').value;   
+                        var blue = document.getElementById('blue').value; 
+                  } 
+                  function Submit(){   
+                        var red = document.getElementById('red').value;   
+                        var green = document.getElementById('green').value;   
+                        var blue = document.getElementById('blue').value;   
+                        console.log(red,green,blue);   
+                        setRGB(red,green,blue); 
+                  }
+        </script>
+    </body>
+</html>
