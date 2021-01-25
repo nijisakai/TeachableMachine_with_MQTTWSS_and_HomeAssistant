@@ -14,6 +14,29 @@ In this repository, I use a raspberry pi 4 with [Hass.io](https://www.home-assis
 
 ## Installation
 
+### Install Docker on Raspberry Pi 4 64 bit Ubuntu 20.10
+<https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl>
+```
+curl -sSL https://get.docker.com | sh
+sudo usermod -aG docker pi
+sudo apt-get install -y libffi-dev libssl-dev
+sudo apt-get install -y python3 python3-pip
+sudo apt-get remove python-configparser
+sudo pip3 -v install docker-compose
+```
+
+### Install Hass.IO
+<https://bbs.hassbian.com/forum.php?mod=viewthread&tid=4520&highlight=hassio>
+```
+su root
+wget https://code.aliyun.com/neroxps/hassio_install/raw/master/install.sh
+chmod a+x install.sh
+./install.sh
+```
+
+---
+[Departed]↓
+~~
 ### Install docker (instructions taken from this thread 96 on docker )
 
 `sudo curl -sL get.docker.com | sed 's/9)/10)/' | sh`
@@ -45,6 +68,9 @@ sudo bash hassio_install.sh
 ```
 
 After that, hassio should be available.
+~~
+[Departed]↑
+---
 
 ### Install MQTT.js with WSS support
 
