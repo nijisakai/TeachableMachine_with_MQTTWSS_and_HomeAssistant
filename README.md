@@ -34,44 +34,6 @@ chmod a+x install.sh
 ./install.sh
 ```
 
----
-[Departed]↓
-~~
-### Install docker (instructions taken from this thread 96 on docker )
-
-`sudo curl -sL get.docker.com | sed 's/9)/10)/' | sh`
-
-### Install hassio dependencies (instructions taken from here 36)
-
-`sudo apt-get install apparmor-utils apt-transport-https avahi-daemon ca-certificates curl dbus jq network-manager socat software-properties-common`
-
-### Install hassio (this part I fiddled with until I got something that worked)
-
-Save hassio installer to file:
-`curl -sL "https://raw.githubusercontent.com/home-assistant/hassio-installer/master/hassio_install.sh" >> hassio_install.sh`
-
-Modify install script. Open up hassio_install.sh in your favorite text editor and change it as follows. Where it says **armv7l**, change that section so it looks like this:
-
-``` bash
-"armv7l")
-        HOMEASSISTANT_DOCKER="$DOCKER_REPO/raspberrypi3-homeassistant"
-        HASSIO_DOCKER="$DOCKER_REPO/armhf-hassio-supervisor"
-    ;;
-```
-
-This link <https://pastebin.com/fc64mDnm> is what mine looked like after I modified it.
-
-Run install script:
-
-``` bash
-sudo bash hassio_install.sh
-```
-
-After that, hassio should be available.
-~~
-[Departed]↑
----
-
 ### Install MQTT.js with WSS support
 
 ``` bash
