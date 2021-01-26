@@ -39,8 +39,7 @@ chmod a+x install.sh
 ``` bash
 npm install mqtt --save
 npm install -g browserify
-npm install -g webpack-cli
-npm install -g webpack@4
+npm install webpack webpack-cli --save-dev -g
 cd node_modules/mqtt
 npm install . // install dev dependencies
 browserify mqtt.js -s mqtt > browserMqtt.js
