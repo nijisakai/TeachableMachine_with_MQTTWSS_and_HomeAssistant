@@ -14,6 +14,14 @@ In this repository, I use a raspberry pi 4 with [Hass.io](https://www.home-assis
 
 ## Installation
 
+### Pre-Installation
+
+```
+sudo apt update
+sudo apt upgrade -y
+sudo apt install net-tools curl git openssh-server nginx
+```
+
 ### Install Docker on Raspberry Pi 4 64 bit Ubuntu 20.10
 <https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl>
 ```
