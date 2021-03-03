@@ -19,7 +19,7 @@ In this repository, I use a raspberry pi 4 with [Hass.io](https://www.home-assis
 ```
 sudo apt update
 sudo apt upgrade -y
-sudo apt install net-tools curl git openssh-server nginx
+sudo apt install net-tools curl git openssh-server nginx npm
 ```
 
 ### Install Docker on Raspberry Pi 4 64 bit Ubuntu 20.10
