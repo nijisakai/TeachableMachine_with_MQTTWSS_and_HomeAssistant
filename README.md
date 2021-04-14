@@ -9,12 +9,12 @@ In this repository, I use a raspberry pi 4 with [Hass.io](https://www.home-assis
 
 ## Requirement
 
-- a web server (Debian/Ubuntu/CentOS, etc.)
+- an **x86** web server (Debian/Ubuntu/CentOS, etc. /WSL)
 - a phone or laptop with a camera
 
 ## Installation
 
-### Pre-Installation
+### Pre-Installation on web server
 
 ```
 sudo apt update
@@ -22,7 +22,7 @@ sudo apt upgrade -y
 sudo apt install net-tools curl git openssh-server nginx npm
 ```
 
-### Install Docker on Raspberry Pi 4 64 bit Ubuntu 20.10
+### Install Docker on Raspberry Pi 4 64 bit Ubuntu 20.10/Official Debian
 <https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl>
 ```
 curl -sSL https://get.docker.com | sh
@@ -33,7 +33,7 @@ sudo apt-get remove python-configparser
 sudo pip3 -v install docker-compose
 ```
 
-### Install Hass.IO
+### Install Hass.IO on Raspberry Pi
 <https://bbs.hassbian.com/forum.php?mod=viewthread&tid=4520&highlight=hassio>
 ```
 su root
@@ -42,7 +42,7 @@ chmod a+x install.sh
 ./install.sh
 ```
 
-### Install MQTT.js with WSS support
+### Install MQTT.js with WSS support on web server
 
 ``` bash
 npm install mqtt --save
