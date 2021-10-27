@@ -6,6 +6,7 @@ In this repository, I use a raspberry pi 4 with [Hass.io](https://www.home-assis
 ## Demo
 
 <https://ping.hass.live>
+<https://www.bilibili.com/video/BV1eE411j7om/>
 
 ## Requirement
 
