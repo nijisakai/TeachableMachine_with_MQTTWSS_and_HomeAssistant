@@ -17,15 +17,17 @@ In this repository, I use a raspberry pi 4 with [Hass.io](https://www.home-assis
 
 ### Pre-Installation on web server
 
-```
+``` bash
 sudo apt update
 sudo apt upgrade -y
 sudo apt install net-tools curl git openssh-server nginx npm
 ```
 
 ### Install Docker on Raspberry Pi 4 64 bit Ubuntu 20.10/Official Debian
+
 <https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl>
-```
+
+``` bash
 curl -sSL https://get.docker.com | sh
 sudo usermod -aG docker pi
 sudo apt-get install -y libffi-dev libssl-dev
@@ -35,8 +37,10 @@ sudo pip3 -v install docker-compose
 ```
 
 ### Install Hass.IO on Raspberry Pi
+
 <https://bbs.hassbian.com/forum.php?mod=viewthread&tid=4520&highlight=hassio>
-```
+
+``` bash
 su root
 wget https://code.aliyun.com/neroxps/hassio_install/raw/master/install.sh
 chmod a+x install.sh
